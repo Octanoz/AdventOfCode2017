@@ -6,7 +6,14 @@ In this area, there are sixteen memory banks; each memory bank can hold any numb
 
 ## Rules
 
-The reallocation routine operates in cycles. In each cycle, it finds the memory bank with the most blocks (ties won by the lowest-numbered memory bank) and redistributes those blocks among the banks. To do this, it removes all of the blocks from the selected bank, then moves to the next (by index) memory bank and inserts one of the blocks. It continues doing this until it runs out of blocks; if it reaches the last memory bank, it wraps around to the first one.
+The reallocation routine operates in cycles. In each cycle:
+
+- Find the memory bank with the most blocks
+    - Ties won by the lowest-indexed memory bank
+- Redistributes those blocks among the banks
+    - Remove all of the blocks from the selected bank
+    - Moves to the next (by index) memory bank and inserts one of the blocks.
+    - Continues doing this until it runs out of blocks; - Wrap around to the first one if last one is reached
 
 The debugger would like to know how many redistributions can be done before a blocks-in-banks configuration is produced that *has been seen before*.
 
@@ -24,3 +31,13 @@ At this point, we've reached a state we've seen before: `2 4 1 2` was already se
 ## Challenge 1
 
 Given the initial block counts in your puzzle input, *how many redistribution cycles* must be completed before a configuration is produced that has been seen before?
+
+<br><hr>
+
+# Part Two
+
+Out of curiosity, the debugger would also like to know the size of the loop: starting from a state that has already been seen, how many block redistribution cycles must be performed before that same state is seen again?
+
+In the example above, `2 4 1 2` is seen again after four cycles, and so the answer in that example would be `4`.
+
+*How many cycles* are in the infinite loop that arises from the configuration in your puzzle input?
