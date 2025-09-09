@@ -36,15 +36,16 @@ public class Debugger(string input)
 
     public int Part2()
     {
-        int cycles = 0;
-        string target = String.Join(" ", banks);
+        int[] target = new int[16];
+        Array.Copy(banks, target, 16);
 
+        int cycles = 0;
         while (true)
         {
             cycles++;
             RedistributeBlocks();
 
-            if (String.Join(" ", banks) == target)
+            if (banks.SequenceEqual(target))
                 return cycles;
         }
     }
